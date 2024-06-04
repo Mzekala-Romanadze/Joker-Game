@@ -1,5 +1,12 @@
 # The program of Joker Game
 
+# This file includes the following functions:
+#                    1. Constant variables
+#                    2. get_player_names()
+#                    3. create_and_shuffle_cards()
+#                    4. choose_game_type()
+
+
 import random
 
 NUMBER_OF_PLAYERS = 4
@@ -57,12 +64,25 @@ def create_and_shuffle_cards():
     return deck_of_cards
 
 
-def main():
-    players = get_player_names()
-    deck_of_cards = create_and_shuffle_cards()
+def choose_game_type():
+    user_choice = input("Do you want to play individually (I) or in a pair (P)? ").upper()
+    while user_choice != "I" and user_choice != "P":
+        user_choice = input("Enter valid Symbol: if you want to play individually - I or in a pair - P? ").upper()
+    if user_choice == "I":
+        return "Individually"
+    else:
+        return "In Pairs"
 
-    print(players)
-    print(deck_of_cards)
+
+def main():
+    pass
+    # players = get_player_names()
+    # deck_of_cards = create_and_shuffle_cards()
+    # game_type = choose_game_type()
+    #
+    # print(players)
+    # print(deck_of_cards)
+    # print(game_type)
 
 
 if __name__ == '__main__':

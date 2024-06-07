@@ -2,9 +2,11 @@
 
 # This file includes the following functions:
 #                    1. Constant variables
-#                    2. get_player_names()
-#                    3. create_and_shuffle_cards()
-#                    4. choose_game_type()
+#                    2. choose_game_type()
+#                    3. get_player_names()
+#                    4. get_players_order()
+#                    5. create_and_shuffle_cards()
+#
 
 
 import random
@@ -40,28 +42,8 @@ WORD_MATCH_POINTS = {"0": 50,
                      "No match": 10,
                      "Fine": -500}
 
-
-def get_player_names() -> list:
-    players = []
-    for i in range(1, NUMBER_OF_PLAYERS + 1):
-        player_name = input(f"Enter name of Player {i}: ").capitalize()
-        while player_name in players:
-            player_name = input(f"This name is already taken. Enter another name for Player {i}: ").capitalize()
-            if player_name in players:
-                continue
-        while not player_name:
-            player_name = input(f"Please enter name for Player {i}: ").capitalize()
-        players.append(player_name)
-    return players
-
-
-def create_and_shuffle_cards():
-    deck_of_cards = []
-    for suit in SUITS:
-        deck_of_cards += DECK_OF_CARDS[suit]
-    random.shuffle(deck_of_cards)
-
-    return deck_of_cards
+TRUMP = ['H', 'D', 'S', 'C', 'N']
+TOTAL_ROUND_CALL = 9
 
 
 def choose_game_type():
@@ -74,15 +56,55 @@ def choose_game_type():
         return "In Pairs"
 
 
+def get_player_names() -> list:
+    players = ["Mzekala", "Luka", "Victoria", "Sebastian"]
+    # for i in range(1, NUMBER_OF_PLAYERS + 1):
+    #     player_name = input(f"Enter name of Player {i}: ").capitalize()
+    #     while player_name in players:
+    #         player_name = input(f"This name is already taken. Enter another name for Player {i}: ").capitalize()
+    #         if player_name in players:
+    #             continue
+    #     while not player_name:
+    #         player_name = input(f"Please enter name for Player {i}: ").capitalize()
+    #     players.append(player_name)
+    return players
+
+
+def get_players_order():
+    players = get_player_names()
+    first_card_dealer = random.choice(players)
+    temp_list_1 = []
+    temp_list_2 = []
+    for player in players:
+        if player == first_card_dealer:
+            index = players.index(player)
+            temp_list_1.append(players[index + 1:])
+            temp_list_2.append(players[:index + 1])
+
+    combine_lists = temp_list_1 + temp_list_2
+    player_order = [player for sublist in combine_lists for player in sublist]
+
+    return player_order
+
+
+def create_and_shuffle_cards():
+    deck_of_cards = []
+    for suit in SUITS:
+        deck_of_cards += DECK_OF_CARDS[suit]
+    random.shuffle(deck_of_cards)
+
+    return deck_of_cards
+
+
 def main():
     pass
-    # players = get_player_names()
-    # deck_of_cards = create_and_shuffle_cards()
     # game_type = choose_game_type()
+    # players_order = get_players_order()
+    # deck_of_cards = create_and_shuffle_cards()
     #
-    # print(players)
-    # print(deck_of_cards)
     # print(game_type)
+    # print(players_order)
+    # print(deck_of_cards)
 
 
 if __name__ == '__main__':

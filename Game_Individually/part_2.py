@@ -38,12 +38,13 @@ def deal_cards():
 
 
 def choose_trump(first_player):
-    chosen_trump = input(f"{first_player} Please choose trump: Heart ('H'), Diamond ('D'), Spade ('S'), "
-                         f"Club ('C') or Nothing ('N') ").upper()
-    while chosen_trump not in TRUMP:
-        chosen_trump = input(f"{first_player} Please choose valid trump: Heart ('H'), Diamond ('D'), Spade ('S'), "
-                             f"Club ('C') or Nothing ('N') ").upper()
-    return chosen_trump
+    # chosen_trump = input(f"{first_player} Please choose trump: Heart ('H'), Diamond ('D'), Spade ('S'), "
+    #                      f"Club ('C') or Nothing ('N') ").upper()
+    # while chosen_trump not in TRUMP:
+    #     chosen_trump = input(f"{first_player} Please choose valid trump: Heart ('H'), Diamond ('D'), Spade ('S'), "
+    #                          f"Club ('C') or Nothing ('N') ").upper()
+    # # return chosen_trump
+    return "Club"
 
 
 def print_cards(players_and_cards, chosen_trump):

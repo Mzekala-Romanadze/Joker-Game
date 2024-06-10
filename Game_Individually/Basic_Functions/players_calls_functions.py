@@ -5,8 +5,8 @@
 #                    2. print_players_calls()
 #
 
-from part_1 import TOTAL_ROUND_CALL
-from part_2 import deal_cards
+from Game_Individually.Basic_Functions.get_players_and_cards import TOTAL_ROUND_CALL
+from Game_Individually.Basic_Functions.deal_cards_functions import deal_cards
 
 
 def player_calls():

@@ -1,7 +1,5 @@
 # The program of Joker Game (Individually)
 
-from part_1 import choose_game_type
-
 
 def main():
     pass

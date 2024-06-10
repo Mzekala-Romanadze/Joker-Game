@@ -1,7 +1,5 @@
 # The program of Joker Game (In Pairs)
 
-from Game_Individually import part_1
-
 
 def main():
     pass

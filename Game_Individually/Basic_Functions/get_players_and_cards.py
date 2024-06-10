@@ -14,9 +14,9 @@ import random
 NUMBER_OF_PLAYERS = 4
 DECK_OF_CARDS = {
     "Spade": ["Ace of Spade", "King of Spade", "Queen of Spade", "Jack of Spade", "10 of Spade",
-              "9 of Spade", "8 of Spade", "7 of Spade", "Joker of Spade"],
+              "9 of Spade", "8 of Spade", "7 of Spade", "Joker of Spades"],
     "Club": ["Ace of Club", "King of Club", "Queen of Club", "Jack of Club", "10 of Club",
-             "9 of Club", "8 of Club", "7 of Club", "Joker of Club"],
+             "9 of Club", "8 of Club", "7 of Club", "Joker of Clubs"],
     "Heart": ["Ace of Heart", "King of Heart", "Queen of Heart", "Jack of Heart", "10 of Heart",
               "9 of Heart", "8 of Heart", "7 of Heart", "6 of Heart"],
     "Diamond": ["Ace of Diamond", "King of Diamond", "Queen of Diamond", "Jack of Diamond", "10 of Diamond",

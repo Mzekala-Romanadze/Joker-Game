@@ -7,7 +7,7 @@
 #                    4. print_cards()
 #
 
-from part_1 import get_players_order, create_and_shuffle_cards, TRUMP
+from Game_Individually.Basic_Functions.get_players_and_cards import get_players_order, create_and_shuffle_cards
 
 
 def get_card_dealer():

@@ -11,15 +11,19 @@ def play_first_round():
 
     players_scores = {f"{player}": [] for player in players_order}
 
-    while players_and_cards:
+    finish_set = []
+
+    while True:
         table_cards = []
+        trump_joker_case = []
+        joker_case = []
+
         for player, cards in players_and_cards.items():
             print(f"Player {player}'s Cards: {cards}")
             player_choice_card = None
-            joker_choice = None
-            middle_player_joker_choice = []
-            want_suit = None
-            take_suit = None
+            joker_choice = None  # WANT or TAKE
+            want_suit = None  # Which suit with highest ranks the player wants to get?
+            take_suit = None  # Which suit with highest ranks the player wants to take the cards?
 
             if not table_cards:
                 player_choice_card = input("Which card do you want to be led? ")
@@ -35,6 +39,7 @@ def play_first_round():
                         want_suit = input("Which suit of cards do you want with highest ranks? ")
                         while want_suit not in SUITS:
                             want_suit = input("Enter valid suit. Which suit of cards do you want with highest ranks? ")
+                        joker_case.append(player_choice_card)
 
                     if player_action == "TAKE":
                         take_suit = input("Which suit of card do you want to take? ")
@@ -46,28 +51,28 @@ def play_first_round():
 
                     player_choice_card = input("Which card do you want to be led? ")
                     while player_choice_card not in cards:
-                        player_choice_card = input(
-                            "You do not have this card. Choose another which you want to be led: ")
+                        player_choice_card = input("You do not have this card. Choose another which "
+                                                   "you want to be led: ")
 
                     while player_choice_card.split()[0] == "Joker":
-                        if want_suit in player_cards_suits:
-                            middle_player_joker_choice.append(player_choice_card)
-                        else:
-                            player_joker_choice = input("Do you want to take cards by Joker or not? (YES/NO) ").upper()
-                            while player_joker_choice != "YES" and player_joker_choice != "NO":
-                                player_joker_choice = input("Enter YES or NO. Do you want to take "
-                                                            "cards by Joker or not? (YES/NO) ").upper()
-                            if player_joker_choice == "YES":
-                                middle_player_joker_choice.append(player_choice_card)
-                            break
+                        player_joker_choice = input("Do you want to take cards by Joker or not? (YES/NO) ").upper()
+                        while player_joker_choice != "YES" and player_joker_choice != "NO":
+                            player_joker_choice = input("Enter YES or NO. Do you want to take "
+                                                        "cards by Joker or not? (YES/NO) ").upper()
+                        if player_joker_choice == "YES":
+                            joker_case.append(player_choice_card)
+                        break
 
-                    while want_suit in player_cards_suits and player_choice_card.split()[-1] != want_suit:
-                        player_choice_card = input("You have to lead card with wanted suit. "
-                                                   "Which card do you want to be led? ")
-                        while player_choice_card not in cards:
-                            player_choice_card = input(
-                                "You do not have this card. Choose another which you want to be led: ")
-                        highest_card = find_highest_suit_card(cards, want_suit)
+                    highest_card = find_highest_suit_card(cards, want_suit)
+                    while (want_suit in player_cards_suits and player_choice_card.split()[-1] !=
+                           want_suit and player_choice_card != highest_card):
+                        while player_choice_card.split()[-1] != want_suit:
+                            player_choice_card = input("You have to lead card with wanted suit. "
+                                                       "Which card do you want to be led? ")
+                            while player_choice_card not in cards:
+                                player_choice_card = input(
+                                    "You do not have this card. Choose another which you want to be led: ")
+
                         while player_choice_card != highest_card:
                             player_choice_card = input("You have to lead highest card with wanted suit. ")
                         break
@@ -79,6 +84,7 @@ def play_first_round():
                         while player_choice_card not in cards:
                             player_choice_card = input(
                                 "You do not have this card. Choose another which you want to be led: ")
+                        trump_joker_case.append(player_choice_card)
                         break
 
                 if joker_choice == "TAKE":
@@ -86,20 +92,17 @@ def play_first_round():
 
                     player_choice_card = input("Which card do you want to be led? ")
                     while player_choice_card not in cards:
-                        player_choice_card = input(
-                            "You do not have this card. Choose another which you want to be led: ")
+                        player_choice_card = input("You do not have this card. Choose another "
+                                                   "which you want to be led: ")
 
                     while player_choice_card.split()[0] == "Joker":
-                        if take_suit in player_cards_suits:
-                            middle_player_joker_choice.append(player_choice_card)
-                        else:
-                            player_joker_choice = input("Do you want to take cards by Joker or not? (YES/NO) ").upper()
-                            while player_joker_choice != "YES" and player_joker_choice != "NO":
-                                player_joker_choice = input("Enter YES or NO. Do you want to take "
-                                                            "cards by Joker or not? (YES/NO) ").upper()
-                            if player_joker_choice == "YES":
-                                middle_player_joker_choice.append(player_choice_card)
-                            break
+                        player_joker_choice = input("Do you want to take cards by Joker or not? (YES/NO) ").upper()
+                        while player_joker_choice != "YES" and player_joker_choice != "NO":
+                            player_joker_choice = input("Enter YES or NO. Do you want to take "
+                                                        "cards by Joker or not? (YES/NO) ").upper()
+                        if player_joker_choice == "YES":
+                            joker_case.append(player_choice_card)
+                        break
 
                     while take_suit in player_cards_suits and player_choice_card.split()[-1] != want_suit:
                         player_choice_card = input("You have to lead take suit card. "
@@ -137,8 +140,7 @@ def play_first_round():
                                 player_joker_choice = input("Enter YES or NO. "
                                                             "Do you want to take cards by Joker or not? (YES/NO) ").upper()
                             if player_joker_choice == "YES":
-                                middle_player_joker_choice.append(player_choice_card)
-
+                                joker_case.append(player_choice_card)
                             break
 
                         player_choice_card = input("You have to lead card with same suit. "
@@ -151,7 +153,7 @@ def play_first_round():
                                 player_joker_choice = input("Enter YES or NO. Do you want to take "
                                                             "cards by Joker or not? (YES/NO) ").upper()
                             if player_joker_choice == "YES":
-                                middle_player_joker_choice.append(player_choice_card)
+                                joker_case.append(player_choice_card)
                             break
 
                         while chosen_trump in player_cards_suits and player_choice_card.split()[0] != chosen_trump:
@@ -170,10 +172,25 @@ def play_first_round():
             table_cards.append(player_choice_card)
             index = cards.index(player_choice_card)
             cards.pop(index)
+            if not cards:
+                finish_set.append(1)
+
+        winner_card = None
+
+        if len(joker_case) == 1 and len(trump_joker_case) == 1:
+            winner_card = trump_joker_case[0]
+        elif len(joker_case) == 1 and len(trump_joker_case) > 1:
+            winner_card = find_highest_card_in_set(trump_joker_case, chosen_trump)
+        elif len(joker_case) == 2:
+            winner_card = joker_case[1]
+        else:
+            winner_card = find_highest_card_in_set(table_cards, chosen_trump)
 
         print(f"Set's Cards: {table_cards} ")
-        winner_card = find_highest_card_in_set(table_cards, chosen_trump)
-        print(winner_card)
+        print(f"Winner Card: {winner_card} ")
+
+        if len(finish_set) == 4:
+            break
 
 
 def find_highest_suit_card(cards, wanted_suit):
@@ -214,6 +231,7 @@ def find_highest_card_in_set(table_cards, chosen_trump):
             highest_card = card
 
     # print("The highest card is:", highest_card)
+    # index = table_cards.index(highest_card)
     return highest_card
 
 

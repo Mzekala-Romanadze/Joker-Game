@@ -6,6 +6,7 @@ from Game_Individually.Basic_Functions.find_card_functions import (find_highest_
                                                                    find_winner_card_of_trick)
 from Game_Individually.Basic_Functions.players_calls_functions import player_calls
 from Game_Individually.Basic_Functions.check_card import check_card
+from Game_Individually.Basic_Functions.rearrange_players_order import rearrange_players_order_for_next_trick
 
 
 def play_one_trick():
@@ -22,6 +23,7 @@ def play_one_trick():
     joker_choice = None  # WANT or TAKE
     want_suit = None  # Which suit with highest ranks the player wants to get?
     take_suit = None  # Which suit with highest ranks the player wants to take the cards?
+    trick_winner_player = None
 
     for player, cards in players_and_cards.items():
         print(f"Player {player}'s Cards: {cards}")
@@ -82,8 +84,11 @@ def play_one_trick():
     for player, card in players_and_table_card.items():
         if card == winner_card:
             players_trick_scores[player] += 1
+            trick_winner_player = player
 
     print(players_trick_scores)
+    players_and_cards = rearrange_players_order_for_next_trick(trick_winner_player, players_order, players_and_cards)
+    print(players_and_cards)
 
 
 def main():

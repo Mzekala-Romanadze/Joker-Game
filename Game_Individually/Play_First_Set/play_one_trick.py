@@ -5,6 +5,7 @@ from Game_Individually.Basic_Functions.joker_card_options import joker_is_first,
 from Game_Individually.Basic_Functions.find_card_functions import (find_highest_suit_card, find_highest_value_card,
                                                                    find_winner_card_of_trick)
 from Game_Individually.Basic_Functions.players_calls_functions import player_calls
+from Game_Individually.Basic_Functions.check_card import check_card
 
 
 def play_one_trick():
@@ -83,11 +84,6 @@ def play_one_trick():
             players_trick_scores[player] += 1
 
     print(players_trick_scores)
-
-
-def check_card(player_choice_card, cards):
-    while player_choice_card not in cards:
-        player_choice_card = input("You do not have this card. Choose another which you want to be led: ")
 
 
 def main():

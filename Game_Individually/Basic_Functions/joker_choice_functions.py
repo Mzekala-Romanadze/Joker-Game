@@ -5,6 +5,8 @@
 #                    2. joker_is_take()
 #
 
+from Game_Individually.Basic_Functions.find_card_functions import find_highest_suit_card
+
 
 def joker_is_want(joker_choice, cards, joker_case, want_suit, chosen_trump, trump_joker_case):
     if joker_choice == "WANT":

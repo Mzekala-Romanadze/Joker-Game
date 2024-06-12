@@ -87,8 +87,9 @@ def play_one_trick():
             trick_winner_player = player
 
     print(players_trick_scores)
-    players_and_cards = rearrange_players_order_for_next_trick(trick_winner_player, players_order, players_and_cards)
+    players_and_cards, players_order = rearrange_players_order_for_next_trick(trick_winner_player, players_order, players_and_cards)
     print(players_and_cards)
+    print(players_order)
 
 
 def main():

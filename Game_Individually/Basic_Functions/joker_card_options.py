@@ -14,13 +14,13 @@ def joker_is_first(player_choice_card, joker_choice, joker_case):
         player_action = input("Wrong input. Choose: Want Highest ('WANT') or Don't Want ('TAKE')? ")
     joker_choice = player_action
 
-    if player_action == "WANT":
+    if joker_choice == "WANT":
         want_suit = input("Which suit of cards do you want with highest ranks? ")
         while want_suit not in SUITS:
             want_suit = input("Enter valid suit. Which suit of cards do you want with highest ranks? ")
         joker_case.append(player_choice_card)
 
-    if player_action == "TAKE":
+    if joker_choice == "TAKE":
         take_suit = input("Which suit of card do you want to take? ")
         while take_suit not in SUITS:
             take_suit = input("Enter valid suit. Which suit of card do you want to take? ")

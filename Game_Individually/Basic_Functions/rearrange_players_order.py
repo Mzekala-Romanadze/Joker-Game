@@ -22,7 +22,7 @@ def rearrange_players_order_for_next_trick(trick_winner_player, players_order, p
         if player in players_and_cards:
             rearranged_players_and_cards[player] = players_and_cards[player]
 
-    return rearranged_players_and_cards
+    return rearranged_players_and_cards, players_order
 
 
 def main():

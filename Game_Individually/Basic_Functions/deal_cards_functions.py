@@ -25,14 +25,14 @@ def deal_cards():
     players_and_cards = {f"{player}": [] for player in players_order}
     first_player = players_order[0]
     three_cards_to_show = players_and_cards[first_player]
-    chosen_trump = []
+    chosen_trump = None
 
     for i in range(9):
         for player in players_and_cards:
             players_and_cards[player].append(deck.pop(0))
         if i == 2:
             print(f"{first_player}: {three_cards_to_show}")
-            chosen_trump.append(choose_trump(first_player))
+            chosen_trump = choose_trump(first_player)
 
     return players_and_cards, chosen_trump, players_order
 

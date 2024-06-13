@@ -9,9 +9,9 @@ from Game_Individually.Basic_Functions.get_players_and_cards import SUITS
 
 
 def joker_is_first(player_choice_card, joker_choice, joker_case):
-    player_action = input("Choose: Want Highest ('WANT') or Don't Want ('TAKE')? ")
+    player_action = input("Choose: Want Highest ('WANT') or Don't Want ('TAKE')? ").upper()
     while player_action != "WANT" and player_action != "TAKE":
-        player_action = input("Wrong input. Choose: Want Highest ('WANT') or Don't Want ('TAKE')? ")
+        player_action = input("Wrong input. Choose: Want Highest ('WANT') or Don't Want ('TAKE')? ").upper()
     joker_choice = player_action
 
     if joker_choice == "WANT":

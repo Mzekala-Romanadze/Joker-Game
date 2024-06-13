@@ -11,14 +11,24 @@ def play_four_hands():
 
     players_order, players_and_cards, players_calls, total_round_score, chosen_trump = player_calls()
 
-    for i in range(4):
-        play_one_hand()
+    players_and_first_set_scores = {f"{player}": 0 for player in players_order}
+    print(f"Bidding:\n\n{players_calls}\n")
+
+    for _ in range(4):
+        play_one_hand(players_order, players_and_cards, chosen_trump)
+        players_order = get_card_dealer(players_order)
+        print(players_order)
+
+
+def get_card_dealer(players_order):
+    players_order = players_order[1:] + [players_order[0]]
+    return players_order
 
 
 def main():
-    # play_four_hands()
+    play_four_hands()
     # print(players_and_first_set_scores)
-    pass
+    # pass
 
 
 if __name__ == '__main__':

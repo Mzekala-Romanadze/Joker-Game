@@ -26,16 +26,15 @@ def find_highest_suit_card(cards, wanted_suit):
     return highest_card
 
 
-def find_highest_value_card(table_cards, chosen_trump):
+def find_highest_value_card(table_cards, chosen_trump, joker_case):
     highest_card = None
     highest_rank_value = -1
 
     for card in table_cards:
         rank, suit = card.split(' of ')
 
-        if rank == "Joker":  # I should add function to deal with case when in the set are 2 jokers
-            highest_card = card
-            break
+        if rank == "Joker":
+            continue
 
         if suit == chosen_trump:
             rank_value = RANK_VALUES[rank] + 100
@@ -57,11 +56,13 @@ def find_winner_card_of_trick(joker_case, trump_joker_case, chosen_trump, table_
     if len(joker_case) == 1 and len(trump_joker_case) == 1:
         winner_card = trump_joker_case[0]
     elif len(joker_case) == 1 and len(trump_joker_case) > 1:
-        winner_card = find_highest_value_card(trump_joker_case, chosen_trump)
+        winner_card = find_highest_suit_card(trump_joker_case, chosen_trump)
+    elif len(joker_case) == 1:
+        winner_card = joker_case[0]
     elif len(joker_case) == 2:
         winner_card = joker_case[1]
     else:
-        winner_card = find_highest_value_card(table_cards, chosen_trump)
+        winner_card = find_highest_value_card(table_cards, chosen_trump, joker_case)
 
     return winner_card
 

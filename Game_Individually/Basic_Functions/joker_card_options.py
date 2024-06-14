@@ -8,7 +8,7 @@
 from Game_Individually.Basic_Functions.get_players_and_cards import SUITS
 
 
-def joker_is_first(player_choice_card, joker_choice, joker_case):
+def joker_is_first(player_choice_card, joker_choice, joker_case, want_suit, take_suit):
     player_action = input("Choose: Want Highest ('WANT') or Don't Want ('TAKE')? ").upper()
     while player_action != "WANT" and player_action != "TAKE":
         player_action = input("Wrong input. Choose: Want Highest ('WANT') or Don't Want ('TAKE')? ").upper()
@@ -24,6 +24,8 @@ def joker_is_first(player_choice_card, joker_choice, joker_case):
         take_suit = input("Which suit of card do you want to take? ")
         while take_suit not in SUITS:
             take_suit = input("Enter valid suit. Which suit of card do you want to take? ")
+
+    return joker_choice, want_suit, take_suit
 
 
 def joker_is_not_first(player_choice_card, joker_case):

@@ -9,10 +9,7 @@ from Game_Individually.Basic_Functions.find_card_functions import find_highest_s
 from Game_Individually.Basic_Functions.check_card import check_card
 
 
-def joker_is_want(cards, player_cards_suits, joker_case, want_suit, chosen_trump, trump_joker_case):
-    player_choice_card = input("Which card do you want to be led? ")
-    check_card(player_choice_card, cards)
-
+def joker_is_want(player_choice_card, cards, player_cards_suits, joker_case, want_suit, chosen_trump, trump_joker_case):
     while want_suit in player_cards_suits:
         if player_choice_card.split()[0] == "Joker":
             player_joker_choice = input("Do you want to take cards by Joker or not? (YES/NO) ").upper()
@@ -57,10 +54,7 @@ def joker_is_want(cards, player_cards_suits, joker_case, want_suit, chosen_trump
             break
 
 
-def joker_is_take(cards, player_cards_suits, joker_case, take_suit, chosen_trump):
-    player_choice_card = input("Which card do you want to be led? ")
-    check_card(player_choice_card, cards)
-
+def joker_is_take(player_choice_card, cards, player_cards_suits, joker_case, take_suit, chosen_trump):
     while take_suit in player_cards_suits:
         if player_choice_card.split()[0] == "Joker":
             player_joker_choice = input("Do you want to take cards by Joker or not? (YES/NO) ").upper()

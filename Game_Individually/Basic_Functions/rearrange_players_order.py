@@ -32,9 +32,17 @@ def rearrange_players_order_for_next_trick(trick_winner_player, players_order, p
     return players_and_cards, players_order
 
 
+def rearrange_players_order_for_next_hand(players_order):
+    rearranged_players_order = players_order[1:] + [players_order[0]]
+    return rearranged_players_order
 
 
 def main():
+    # hand_4_scores = ["Alice", "Bob", "Charlie", "Diana"]
+    # for _ in range(4):
+    #     hand_4_scores = rearrange_players_order_for_next_hand(hand_4_scores)
+    #     print(hand_4_scores)
+
     pass
 
 

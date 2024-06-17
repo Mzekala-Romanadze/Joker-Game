@@ -8,14 +8,26 @@
 
 from Game_Individually.Basic_Functions.get_players_and_cards import TOTAL_ROUND_CALL
 from Game_Individually.Basic_Functions.deal_cards_functions import deal_cards
+from Game_Individually.Basic_Functions.rearrange_players_order import rearrange_players_order_for_next_hand
+from Game_Individually.Basic_Functions.get_players_and_cards import get_players_order
 
 
-def player_calls():
-    players_and_cards, chosen_trump, players_order = deal_cards()
+def player_calls(hand_number, temp_players_order):
+    original_players_order = get_players_order(hand_number=0)
+    print(original_players_order)
+    players_and_cards = None
+    chosen_trump = None
+    if hand_number == 0:
+        players_and_cards, chosen_trump, players_order = deal_cards(original_players_order)
+        temp_players_order = players_order
+    if hand_number > 0:
+        temp_players_order = rearrange_players_order_for_next_hand(temp_players_order)
+        players_and_cards, chosen_trump, players_order = deal_cards(temp_players_order)
+        temp_players_order = players_order
 
     players_calls = {}
 
-    card_dealer = players_order[-1]
+    card_dealer = temp_players_order[-1]
     total_round_score = 0
 
     for player, cards in players_and_cards.items():
@@ -35,13 +47,13 @@ def player_calls():
         players_calls[player] = player_call
         total_round_score += players_calls[player]
 
-    return players_order, players_and_cards, players_calls, total_round_score, chosen_trump
+    return temp_players_order, players_and_cards, players_calls, total_round_score, chosen_trump
 
 
-def print_players_calls():
-    _, _, players_calls, total_round_score, _ = player_calls()
-    print(players_calls)
-    print(f"The Players' calls in total: {total_round_score}")
+# def print_players_calls():
+#     _, _, players_calls, total_round_score, _ = player_calls()
+#     print(players_calls)
+#     print(f"The Players' calls in total: {total_round_score}")
 
 
 def check_calls(player, player_call=None):

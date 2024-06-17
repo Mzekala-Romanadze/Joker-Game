@@ -10,7 +10,6 @@ from Game_Individually.Basic_Functions.rearrange_players_order import rearrange_
 def play_one_trick(players_order, players_and_cards, chosen_trump, trick_winner_player, players_and_one_hand_scores):
     players_and_cards, players_order = rearrange_players_order_for_next_trick(trick_winner_player,
                                                                               players_order, players_and_cards)
-
     players_and_table_card = {}
     table_cards = []
 
@@ -26,7 +25,7 @@ def play_one_trick(players_order, players_and_cards, chosen_trump, trick_winner_
         player_cards_suits = [card.split()[-1] for card in cards]
 
         if not table_cards:
-            player_choice_card = input(f"Player {player}, Which card do you want to be led? ")
+            player_choice_card = input(f"{player}, Which card do you want to be led? ")
             while player_choice_card not in cards:
                 player_choice_card = input(f"{player}, You do not have this card. Choose another card "
                                            f"you want to be led: ")
@@ -36,18 +35,18 @@ def play_one_trick(players_order, players_and_cards, chosen_trump, trick_winner_
 
         else:
             if joker_choice == "WANT":
-                player_choice_card = input(f"Player {player}, Which card do you want to be led? ")
+                player_choice_card = input(f"{player}, Which card do you want to be led? ")
                 check_card(player_choice_card, cards)
                 joker_is_want(player_choice_card, cards, player_cards_suits, joker_case, want_suit,
                               chosen_trump, trump_joker_case)
 
             elif joker_choice == "TAKE":
-                player_choice_card = input(f"Player {player}, Which card do you want to be led? ")
+                player_choice_card = input(f"{player}, Which card do you want to be led? ")
                 check_card(player_choice_card, cards)
                 joker_is_take(player_choice_card, cards, player_cards_suits, joker_case, take_suit, chosen_trump)
 
             else:
-                player_choice_card = input(f"Player {player}, Which card do you want to be led? ")
+                player_choice_card = input(f"{player}, Which card do you want to be led? ")
                 while player_choice_card not in cards:
                     player_choice_card = input(f"{player}, You do not have this card. Choose another card "
                                                f"you want to be led: ")

@@ -8,16 +8,15 @@
 #
 
 from Game_Individually.Basic_Functions.get_players_and_cards import get_players_order, create_and_shuffle_cards
+from Game_Individually.Basic_Functions.rearrange_players_order import rearrange_players_order_for_next_hand
+
+# def get_card_dealer():
+#     players_order = get_players_order()
+#     card_dealer = players_order[3]
+#     return players_order, card_dealer
 
 
-def get_card_dealer():
-    players_order = get_players_order()
-    card_dealer = players_order[3]
-    return players_order, card_dealer
-
-
-def deal_cards():
-    players_order, card_dealer = get_card_dealer()
+def deal_cards(players_order):
     deck = create_and_shuffle_cards()
 
     print(f"Player order: {players_order}: ")

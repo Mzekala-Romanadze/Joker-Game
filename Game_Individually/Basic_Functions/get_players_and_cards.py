@@ -10,6 +10,7 @@
 
 
 import random
+from Game_Individually.Basic_Functions.rearrange_players_order import rearrange_players_order_for_next_hand
 
 NUMBER_OF_PLAYERS = 4
 DECK_OF_CARDS = {
@@ -29,7 +30,7 @@ RANK_VALUES = {"Joker": 20, "Ace": 14, "King": 13, "Queen": 12, "Jack": 11, "10"
 WORDS = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 MATCH = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
-WORD_MATCH_POINTS = {"0": 50,
+CALL_MATCH_POINTS = {"0": 50,
                      "1": 100,
                      "2": 150,
                      "3": 200,
@@ -70,7 +71,7 @@ def get_player_names() -> list:
     return players
 
 
-def get_players_order():
+def get_players_order(hand_number):
     players = get_player_names()
     first_card_dealer = random.choice(players)
     temp_list_1 = []
@@ -82,9 +83,10 @@ def get_players_order():
             temp_list_2.append(players[:index + 1])
 
     combine_lists = temp_list_1 + temp_list_2
-    player_order = [player for sublist in combine_lists for player in sublist]
 
-    return player_order
+    if hand_number == 0:
+        players_order = [player for sublist in combine_lists for player in sublist]
+        return players_order
 
 
 def create_and_shuffle_cards():

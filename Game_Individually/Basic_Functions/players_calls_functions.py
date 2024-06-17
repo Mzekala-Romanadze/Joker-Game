@@ -54,8 +54,8 @@ def check_calls(player, player_call=None):
 
 
 def main():
-    # pass
-    print_players_calls()
+    pass
+    # print_players_calls()
 
 
 if __name__ == '__main__':

@@ -50,7 +50,9 @@ def find_highest_value_card(table_cards, chosen_trump, joker_case):
     return highest_card
 
 
-def find_winner_card_of_trick(joker_case, trump_joker_case, chosen_trump, table_cards):
+def find_winner_card_of_trick(joker_case, trump_joker_case, chosen_trump, table_cards, joker_choice, take_suit):
+    table_cards_suits = [card.split()[-1] for card in table_cards]
+
     winner_card = None
 
     if len(joker_case) == 1 and len(trump_joker_case) == 1:
@@ -61,6 +63,16 @@ def find_winner_card_of_trick(joker_case, trump_joker_case, chosen_trump, table_
         winner_card = joker_case[0]
     elif len(joker_case) == 2:
         winner_card = joker_case[1]
+    elif joker_choice == "TAKE" and take_suit not in table_cards_suits:
+        if chosen_trump in table_cards_suits:
+            winner_card = find_highest_suit_card(table_cards, chosen_trump)
+        else:
+            winner_card = table_cards[0]
+    elif joker_choice == "TAKE" and take_suit in table_cards_suits:
+        if chosen_trump in table_cards_suits:
+            winner_card = find_highest_suit_card(table_cards, chosen_trump)
+        else:
+            winner_card = find_highest_suit_card(table_cards, take_suit)
     else:
         winner_card = find_highest_value_card(table_cards, chosen_trump, joker_case)
 

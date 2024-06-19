@@ -1,3 +1,10 @@
+"""
+The program of Joker Game. This file includes the following functions:
+            1. check_card()
+
+"""
+
+
 # The program of Joker Game
 
 # This file includes the following functions:

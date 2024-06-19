@@ -1,23 +1,23 @@
-# The program of Joker Game
+"""
+The program of Joker Game. This file includes the following functions:
+            1. joker_is_first()
+            2. joker_is_not_first()
 
-# This file includes the following functions:
-#                    1. joker_is_first()
-#                    2. joker_is_not_first()
-#
+"""
 
 from Game_Individually.Basic_Functions.get_players_and_cards import SUITS
 
 
-def joker_is_first(player_choice_card, joker_choice, joker_case, want_suit, take_suit):
+def joker_is_first(player_choice_card, joker_case, want_suit, take_suit):
     player_action = input("Choose: Want Highest ('WANT') or Don't Want ('TAKE')? ").upper()
     while player_action != "WANT" and player_action != "TAKE":
         player_action = input("Wrong input. Choose: Want Highest ('WANT') or Don't Want ('TAKE')? ").upper()
     joker_choice = player_action
 
     if joker_choice == "WANT":
-        want_suit = input("Which suit of cards do you want with highest ranks? ")
+        want_suit = input("Which suit of cards do you want with highest ranks? ").upper()
         while want_suit not in SUITS:
-            want_suit = input("Enter valid suit. Which suit of cards do you want with highest ranks? ")
+            want_suit = input("Enter valid suit. Which suit of cards do you want with highest ranks? ").upper()
         joker_case.append(player_choice_card)
 
     if joker_choice == "TAKE":

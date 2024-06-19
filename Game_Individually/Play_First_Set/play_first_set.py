@@ -1,13 +1,17 @@
-# The program of playing first set (4 hands (4 * 9 tricks)
+"""
+The program of Joker Game. This file includes the following functions:
+            1. play_first_set() => playing 4 hands (4 * 9 tricks)
+
+"""
 
 from play_one_hand import play_one_hand
-from Game_Individually.Basic_Functions.calculate_scores_functions import (create_set_scores_table,
-                                                                          find_perfect_match_player,
-                                                                          create_final_set_scores)
-from Game_Individually.Basic_Functions.calculate_scores_functions import perfect_match_scores
+from Game_Individually.Basic_Functions.get_players_scores_functions import (create_set_scores_table,
+                                                                            find_perfect_match_player,
+                                                                            create_final_set_scores)
+from Game_Individually.Basic_Functions.get_players_scores_functions import perfect_match_scores
 
 
-def play_four_hands():
+def play_first_set():
     hand_number = 0
     temp_players_order = None
     first_set_scores = []
@@ -32,9 +36,6 @@ def play_four_hands():
 
 
 def main():
-    # for i in range(4):
-    #     play_four_hands()
-
     pass
 
 

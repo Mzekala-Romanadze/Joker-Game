@@ -1,24 +1,35 @@
-# The program of Joker Game
+"""
+The program of Joker Game. This file includes the following functions:
+            1. calculate_hand_scores()
+            2. initial_set_scores_table()
+            3. find_perfect_match_player()
+            4. final_set_scores_table()
+            5. create_game_scores_table()
 
-# This file includes the following functions:
-#                    1. calculate_hand_scores()
-#                    2. create_set_scores_table()
-#                    3. create_game_scores_table()
-#                    4. ()
-#                    5. ()
-#
+"""
 
-from Game_Individually.Basic_Functions.get_players_and_cards import CALL_MATCH_POINTS
 from Game_Individually.Basic_Functions.get_players_and_cards import get_players_order
 
+CALL_MATCH_POINTS = {"0": 50,
+                     "1": 100,
+                     "2": 150,
+                     "3": 200,
+                     "4": 250,
+                     "5": 300,
+                     "6": 350,
+                     "7": 400,
+                     "8": 450,
+                     "9": 900,
+                     "No match": 10,
+                     "Fine": -500}
+
 original_players_order = get_players_order(hand_number=0)
-#
 perfect_match_scores = {f"{player}": [] for player in original_players_order}
 
 
 def calculate_hand_scores(players_calls, player_take_scores):
     global perfect_match_scores
-    player_scores = {}
+    player_hand_scores = {}
 
     for player, call in players_calls.items():
         take = player_take_scores.get(player, 0)
@@ -39,17 +50,12 @@ def calculate_hand_scores(players_calls, player_take_scores):
                 perfect_match_scores[player] = []
             perfect_match_scores[player].append(0)
 
-        player_scores[player] = score
+        player_hand_scores[player] = score
 
-    return player_scores
+    return player_hand_scores
 
 
-def create_set_scores_table(set_scores):
-    """
-    Creates scores table for 1 set, 4 hands.
-    :return: players and set scores
-    """
-
+def initial_set_scores_table(set_scores):
     players_and_set_scores = {}
 
     for game_set in set_scores:
@@ -59,16 +65,6 @@ def create_set_scores_table(set_scores):
             players_and_set_scores[player].append(score)
 
     return players_and_set_scores
-#
-#
-# def create_game_scores_table():
-#     """
-#     Combines and summarizes 4 sets scores in 4 columns and rows.
-#     For 4 sets and sum of 16 hands scores in each set
-#     :return: The final scores of the game
-#     """
-#     #
-#     pass
 
 
 def find_perfect_match_player(perfect_match):
@@ -84,7 +80,7 @@ def find_perfect_match_player(perfect_match):
         return player_succeed_in_set
 
 
-def create_final_set_scores(players_and_set_scores, perfect_match):
+def final_set_scores_table(players_and_set_scores, perfect_match):
     players_and_final_set_scores = {}
     other_player_scores = []
 
@@ -104,6 +100,15 @@ def create_final_set_scores(players_and_set_scores, perfect_match):
             players_and_final_set_scores[player] = sum(scores) + bonus_point
 
     return players_and_final_set_scores
+
+
+def create_game_scores_table():
+    """
+    Combines and summarizes 4 sets' scores.
+    For 4 sets and sum of 16 hands scores in each set
+    :return: The final scores of the game
+    """
+    pass
 
 
 def main():

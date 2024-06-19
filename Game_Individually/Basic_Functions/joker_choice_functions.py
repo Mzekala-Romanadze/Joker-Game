@@ -1,12 +1,11 @@
-# The program of Joker Game
+"""
+The program of Joker Game. This file includes the following functions:
+            1. joker_is_want()
+            2. joker_is_take()
 
-# This file includes the following functions:
-#                    1. joker_is_want()
-#                    2. joker_is_take()
-#
+"""
 
-from Game_Individually.Basic_Functions.find_card_functions import find_highest_suit_card
-from Game_Individually.Basic_Functions.check_card import check_card
+from Game_Individually.Basic_Functions.check_and_find_card_functions import check_card, find_highest_suit_card
 
 
 def joker_is_want(player_choice_card, cards, player_cards_suits, joker_case, want_suit, chosen_trump, trump_joker_case):

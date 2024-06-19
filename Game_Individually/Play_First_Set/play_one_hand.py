@@ -1,8 +1,13 @@
+"""
+The program of Joker Game. This file includes the following functions:
+            1. check_card()
+
+"""
 # The program of playing 1 hand (9 tricks, 36 cards)
 
 from Game_Individually.Play_First_Set.play_one_trick import play_one_trick
 from Game_Individually.Basic_Functions.players_calls_functions import player_calls
-from Game_Individually.Basic_Functions.calculate_scores_functions import calculate_hand_scores
+from Game_Individually.Basic_Functions.get_players_scores_functions import calculate_hand_scores
 
 
 def play_one_hand(set_scores, hand_number, temp_players_order):

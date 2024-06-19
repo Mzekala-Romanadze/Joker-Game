@@ -1,8 +1,13 @@
+"""
+The program of Joker Game. This file includes the following functions:
+            1. check_card()
+
+"""
 # The program of playing 1 trick (4 cards)
 
 from Game_Individually.Basic_Functions.joker_choice_functions import joker_is_want, joker_is_take
 from Game_Individually.Basic_Functions.joker_card_options import joker_is_first, joker_is_not_first
-from Game_Individually.Basic_Functions.find_card_functions import find_winner_card_of_trick
+from Game_Individually.Basic_Functions.check_and_find_card_functions import find_winner_card_of_trick
 from Game_Individually.Basic_Functions.check_card import check_card
 from Game_Individually.Basic_Functions.rearrange_players_order import rearrange_players_order_for_next_trick
 

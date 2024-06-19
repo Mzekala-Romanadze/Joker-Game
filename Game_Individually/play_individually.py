@@ -6,6 +6,7 @@ This file includes the following functions:
 
 """
 
+from Game_Individually.Basic_Functions.get_players_and_cards import get_players_order
 from Game_Individually.Play_First_Set.play_first_set import play_first_set
 from Game_Individually.Play_Second_Set.play_second_set import play_second_set
 from Game_Individually.Play_Third_Set.play_third_set import play_third_set
@@ -14,12 +15,19 @@ from Game_Individually.Basic_Functions.get_players_scores_functions import creat
 
 
 def play_game_individually():
-    first_set_scores = play_first_set()
-    second_set_scores = play_second_set()
-    third_set_scores = play_third_set()
-    fourth_set_scores = play_fourth_set()
+    original_players_order = get_players_order(hand_number=0)
+    perfect_match_scores = {f"{player}": [] for player in original_players_order}
 
-    winner_player, winner_score, game_scores_table = create_game_scores_table(first_set_scores, second_set_scores, third_set_scores, fourth_set_scores)
+    first_set_scores, perfect_match_scores = play_first_set(original_players_order, perfect_match_scores={f"{player}": [] for player in original_players_order})
+    # print(f"N1: {perfect_match_scores}")
+    second_set_scores, perfect_match_scores = play_second_set(original_players_order, perfect_match_scores={f"{player}": [] for player in original_players_order})
+    # print(f"N2: {perfect_match_scores}")
+    third_set_scores, perfect_match_scores = play_third_set(original_players_order, perfect_match_scores={f"{player}": [] for player in original_players_order})
+    # print(f"N3: {perfect_match_scores}")
+    fourth_set_scores, perfect_match_scores = play_fourth_set(original_players_order, perfect_match_scores={f"{player}": [] for player in original_players_order})
+    # print(f"N4: {perfect_match_scores}")
+    winner_player, winner_score, game_scores_table = create_game_scores_table(first_set_scores, second_set_scores,
+                                                                              third_set_scores, fourth_set_scores)
 
     return winner_player, winner_score, game_scores_table
 

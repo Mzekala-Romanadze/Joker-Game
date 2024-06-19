@@ -10,16 +10,16 @@ from Game_Individually.Basic_Functions.get_players_scores_functions import (init
 from Game_Individually.Basic_Functions.play_one_set import play_one_set
 
 
-def play_third_set():
-    third_set_scores, perfect_match_scores = play_one_set()
+def play_third_set(original_players_order, perfect_match_scores):
+    third_set_scores, perfect_match_scores = play_one_set(original_players_order, perfect_match_scores)
     players_and_third_set_scores = initial_set_scores_table(third_set_scores)
     perfect_match = find_perfect_match_player(perfect_match_scores)
 
     if perfect_match is None:
-        return players_and_third_set_scores
+        return players_and_third_set_scores, perfect_match_scores
     else:
         players_and_third_set_scores = final_set_scores_table(players_and_third_set_scores, perfect_match)
-        return players_and_third_set_scores
+        return players_and_third_set_scores, perfect_match_scores
 
 
 def main():

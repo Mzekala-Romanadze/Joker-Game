@@ -9,14 +9,14 @@ from Game_Individually.Basic_Functions.play_one_trick import play_one_trick
 from Game_Individually.Basic_Functions.get_players_scores_functions import calculate_hand_scores
 
 
-def play_one_hand(set_scores, hand_number, temp_players_order, perfect_match_scores):
+def play_one_hand(set_scores, hand_number, temp_players_order, perfect_match_scores, original_players_order):
     players_order, players_and_cards, players_calls, total_round_score, chosen_trump = (
-        player_calls(hand_number, temp_players_order))
+        player_calls(hand_number, temp_players_order, original_players_order))
     print(f"Bidding:\n\n{players_calls}\n")
 
     player_take_scores = {f"{player}": 0 for player in players_order}
     trick_winner_player = None
-    for _ in range(2):
+    for _ in range(9):
         trick_winner_player, player_take_scores = play_one_trick(players_order, players_and_cards,
                                                                  chosen_trump, trick_winner_player,
                                                                  player_take_scores)

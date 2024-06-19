@@ -12,8 +12,7 @@ from Game_Individually.Basic_Functions.rearrange_players_order import rearrange_
 TOTAL_ROUND_CALL = 9
 
 
-def player_calls(hand_number, temp_players_order):
-    original_players_order = get_players_order(hand_number=0)
+def player_calls(hand_number, temp_players_order, original_players_order):
     if hand_number == 0:
         players_and_cards, chosen_trump, players_order = deal_cards(original_players_order)
         temp_players_order = players_order

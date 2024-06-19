@@ -9,7 +9,7 @@ from Game_Individually.Basic_Functions.play_one_trick import play_one_trick
 from Game_Individually.Basic_Functions.get_players_scores_functions import calculate_hand_scores
 
 
-def play_one_hand(set_scores, hand_number, temp_players_order):
+def play_one_hand(set_scores, hand_number, temp_players_order, perfect_match_scores):
     players_order, players_and_cards, players_calls, total_round_score, chosen_trump = (
         player_calls(hand_number, temp_players_order))
     print(f"Bidding:\n\n{players_calls}\n")
@@ -20,11 +20,12 @@ def play_one_hand(set_scores, hand_number, temp_players_order):
         trick_winner_player, player_take_scores = play_one_trick(players_order, players_and_cards,
                                                                  chosen_trump, trick_winner_player,
                                                                  player_take_scores)
-    players_and_hand_scores = calculate_hand_scores(players_calls, player_take_scores)
+    players_and_hand_scores, perfect_match_scores = calculate_hand_scores(players_calls, player_take_scores,
+                                                                          perfect_match_scores)
     print(f"Players' Scores: {players_and_hand_scores}")
     set_scores.append(players_and_hand_scores)
 
-    return players_order, set_scores
+    return players_order, set_scores, perfect_match_scores
 
 
 def main():

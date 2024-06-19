@@ -27,14 +27,19 @@ def play_game():
     game_type = choose_game_type()
 
     if game_type == "Individually":
+        print("Hello Players, you play Individually ")
+        print("Be mindful of every decision. Success is in the details.")
         play_game_individually()
 
     if game_type == "In Pairs":
+        print("Hello Players, you play In Pairs ")
+        print("Be mindful of every decision. Success is in the details and teamwork.")
         play_game_in_pairs()
 
 
 def main():
-    play_game()
+    # play_game()
+    pass
 
 
 if __name__ == '__main__':

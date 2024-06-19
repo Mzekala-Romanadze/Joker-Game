@@ -8,8 +8,6 @@ The program of Joker Game. This file includes the following functions:
 
 """
 
-from Game_Individually.Basic_Functions.get_players_and_cards import get_players_order
-
 CALL_MATCH_POINTS = {"0": 50,
                      "1": 100,
                      "2": 150,
@@ -23,12 +21,8 @@ CALL_MATCH_POINTS = {"0": 50,
                      "No match": 10,
                      "Fine": -500}
 
-original_players_order = get_players_order(hand_number=0)
-perfect_match_scores = {f"{player}": [] for player in original_players_order}
 
-
-def calculate_hand_scores(players_calls, player_take_scores):
-    global perfect_match_scores
+def calculate_hand_scores(players_calls, player_take_scores, perfect_match_scores):
     player_hand_scores = {}
 
     for player, call in players_calls.items():
@@ -52,7 +46,7 @@ def calculate_hand_scores(players_calls, player_take_scores):
 
         player_hand_scores[player] = score
 
-    return player_hand_scores
+    return player_hand_scores, perfect_match_scores
 
 
 def initial_set_scores_table(set_scores):

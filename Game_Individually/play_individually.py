@@ -27,6 +27,7 @@ def play_game_individually():
 def main():
     print("Hello Players, you play Individually ")
     print("Be mindful of every decision. Success is in the details.")
+
     winner_player, winner_score, game_scores_table = play_game_individually()
 
     if len(winner_player) > 1:

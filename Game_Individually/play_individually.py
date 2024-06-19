@@ -6,18 +6,36 @@ This file includes the following functions:
 
 """
 
-from Game_Individually.Play_First_Set.play_first_set import play_four_hands
+from Game_Individually.Play_First_Set.play_first_set import play_first_set
+from Game_Individually.Play_Second_Set.play_second_set import play_second_set
+from Game_Individually.Play_Third_Set.play_third_set import play_third_set
+from Game_Individually.Play_Fourth_Set.play_fourth_set import play_fourth_set
+from Game_Individually.Basic_Functions.get_players_scores_functions import create_game_scores_table
 
 
 def play_game_individually():
-    pass
+    first_set_scores = play_first_set()
+    second_set_scores = play_second_set()
+    third_set_scores = play_third_set()
+    fourth_set_scores = play_fourth_set()
+
+    winner_player, winner_score, game_scores_table = create_game_scores_table(first_set_scores, second_set_scores, third_set_scores, fourth_set_scores)
+
+    return winner_player, winner_score, game_scores_table
 
 
 def main():
-    pass
-    # game_type = choose_game_type()
-    # if game_type == "Individually":
-    #     print("Start this Game")
+    print("Hello Players, you play Individually ")
+    print("Be mindful of every decision. Success is in the details.")
+    winner_player, winner_score, game_scores_table = play_game_individually()
+
+    if len(winner_player) > 1:
+        print(f"Game is over! There are more than one winner: {winner_player} Congratulations! "
+              f"You won the game by {winner_score} points. ")
+    else:
+        print(f"Game is over! {winner_player} Congratulations! You won the game by {winner_score} points. ")
+
+    print(f"The players and scores: {game_scores_table}")
 
 
 if __name__ == '__main__':

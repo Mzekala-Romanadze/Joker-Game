@@ -1,19 +1,12 @@
 """
 The program of Joker Game. This file includes the following functions:
-            1. check_card()
+            1. rearrange_players_order_for_next_trick()
+            2. rearrange_players_order_for_next_hand()
 
 """
 
-# The program of Joker Game
-
-# This file includes the following functions:
-#                    1. rearrange_players_order_for_next_trick()
-#
-
 
 def rearrange_players_order_for_next_trick(trick_winner_player, players_order, players_and_cards):
-    print(trick_winner_player)
-    print(players_order)
     if trick_winner_player is None:
         return players_and_cards, players_order
     rearranged_players_and_cards = {}
@@ -27,14 +20,12 @@ def rearrange_players_order_for_next_trick(trick_winner_player, players_order, p
 
     combine_lists = temp_list_1 + temp_list_2
     players_order = [player for sublist in combine_lists for player in sublist]
-    print(players_order)
 
     for player in players_order:
         if player in players_and_cards:
             rearranged_players_and_cards[player] = players_and_cards[player]
-
     players_and_cards = rearranged_players_and_cards
-    print(players_and_cards)
+
     return players_and_cards, players_order
 
 
@@ -44,11 +35,6 @@ def rearrange_players_order_for_next_hand(players_order):
 
 
 def main():
-    # hand_4_scores = ["Alice", "Bob", "Charlie", "Diana"]
-    # for _ in range(4):
-    #     hand_4_scores = rearrange_players_order_for_next_hand(hand_4_scores)
-    #     print(hand_4_scores)
-
     pass
 
 

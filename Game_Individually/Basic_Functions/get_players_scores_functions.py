@@ -102,13 +102,29 @@ def final_set_scores_table(players_and_set_scores, perfect_match):
     return players_and_final_set_scores
 
 
-def create_game_scores_table():
-    """
-    Combines and summarizes 4 sets' scores.
-    For 4 sets and sum of 16 hands scores in each set
-    :return: The final scores of the game
-    """
-    pass
+def create_game_scores_table(first_set_scores, second_set_scores, third_set_scores, fourth_set_scores):
+    all_set_scores = [first_set_scores, second_set_scores, third_set_scores, fourth_set_scores]
+
+    game_scores_table = {}
+
+    for game_set in all_set_scores:
+        for player, score in game_set.items():
+            if player not in game_scores_table:
+                game_scores_table[player] = score
+            else:
+                game_scores_table[player] += score
+
+    players_scores = []
+    for player, score in game_scores_table.items():
+        players_scores.append(score)
+
+    winner_score = max(players_scores)
+    winner_player = []
+    for player, score in game_scores_table.items():
+        if winner_score == score:
+            winner_player.append(player)
+
+    return winner_player, winner_score, game_scores_table
 
 
 def main():

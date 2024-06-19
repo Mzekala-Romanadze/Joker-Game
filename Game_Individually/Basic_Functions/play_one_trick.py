@@ -1,14 +1,12 @@
 """
 The program of Joker Game. This file includes the following functions:
-            1. check_card()
+            1. play_one_trick() => playing 1 trick (4 cards)
 
 """
-# The program of playing 1 trick (4 cards)
 
-from Game_Individually.Basic_Functions.joker_choice_functions import joker_is_want, joker_is_take
-from Game_Individually.Basic_Functions.joker_card_options import joker_is_first, joker_is_not_first
-from Game_Individually.Basic_Functions.check_and_find_card_functions import find_winner_card_of_trick
-from Game_Individually.Basic_Functions.check_card import check_card
+from Game_Individually.Basic_Functions.check_and_find_card_functions import check_card, find_winner_card
+from Game_Individually.Basic_Functions.joker_choice_functions import joker_is_first, joker_is_not_first
+from Game_Individually.Basic_Functions.high_and_low_joker_functions import joker_is_want, joker_is_take
 from Game_Individually.Basic_Functions.rearrange_players_order import rearrange_players_order_for_next_trick
 
 
@@ -22,8 +20,8 @@ def play_one_trick(players_order, players_and_cards, chosen_trump, trick_winner_
     joker_case = []
 
     joker_choice = None  # WANT or TAKE
-    want_suit = None  # Which suit with highest ranks the player wants to get?
-    take_suit = None  # Which suit with highest ranks the player wants to take the cards?
+    want_suit = None  # Which suit with highest ranks the player wants to get
+    take_suit = None  # Which suit with highest ranks the player wants other player take
 
     for player, cards in players_and_cards.items():
         print(f"Player {player}'s Cards: {cards}")
@@ -35,15 +33,14 @@ def play_one_trick(players_order, players_and_cards, chosen_trump, trick_winner_
                 player_choice_card = input(f"{player}, You do not have this card. Choose another card "
                                            f"you want to be led: ")
             if player_choice_card.split()[0] == "Joker":
-                joker_choice, want_suit, take_suit = joker_is_first(player_choice_card, joker_choice,
-                                                                    joker_case, want_suit, take_suit)
-
+                joker_choice, want_suit, take_suit = joker_is_first(player_choice_card, joker_case, want_suit,
+                                                                    take_suit)
         else:
             if joker_choice == "WANT":
                 player_choice_card = input(f"{player}, Which card do you want to be led? ")
                 check_card(player_choice_card, cards)
-                joker_is_want(player_choice_card, cards, player_cards_suits, joker_case, want_suit,
-                              chosen_trump, trump_joker_case)
+                joker_is_want(player_choice_card, cards, player_cards_suits, joker_case, want_suit, chosen_trump,
+                              trump_joker_case)
 
             elif joker_choice == "TAKE":
                 player_choice_card = input(f"{player}, Which card do you want to be led? ")
@@ -79,13 +76,13 @@ def play_one_trick(players_order, players_and_cards, chosen_trump, trick_winner_
                         break
                     if chosen_trump not in player_cards_suits:
                         break
+
         players_and_table_card[player] = player_choice_card
         table_cards.append(player_choice_card)
         cards.pop(cards.index(player_choice_card))
 
     print(f"Set's Cards: {table_cards} ")
-    winner_card = find_winner_card_of_trick(joker_case, trump_joker_case, chosen_trump, table_cards,
-                                            joker_choice, take_suit)
+    winner_card = find_winner_card(joker_case, trump_joker_case, chosen_trump, table_cards, joker_choice, take_suit)
 
     for player, card in players_and_table_card.items():
         if card == winner_card:

@@ -20,7 +20,7 @@ def play_one_hand(set_scores, hand_number, temp_players_order):
     print(f"Hand Scores: {players_and_hand_scores}")
     set_scores.append(players_and_hand_scores)
 
-    return players_order
+    return players_order, set_scores
 
 
 def main():

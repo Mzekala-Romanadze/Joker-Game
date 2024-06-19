@@ -4,13 +4,10 @@ The program of Joker Game. This file includes the following functions:
 
 """
 
-from Game_Individually.Basic_Functions.get_players_and_cards import get_players_order
 from Game_Individually.Basic_Functions.play_one_hand import play_one_hand
 
 
 def play_one_set(original_players_order, perfect_match_scores):
-    # original_players_order = get_players_order(hand_number=0)
-    # perfect_match_scores = {f"{player}": [] for player in original_players_order}
     hand_number = 0
     temp_players_order = None
     one_set_scores = []

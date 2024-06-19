@@ -29,7 +29,16 @@ def play_game():
     if game_type == "Individually":
         print("Hello Players, you play Individually ")
         print("Be mindful of every decision. Success is in the details.")
-        play_game_individually()
+
+        winner_player, winner_score, game_scores_table = play_game_individually()
+
+        if len(winner_player) > 1:
+            print(f"Game is over! There are more than one winner: {winner_player} Congratulations! "
+                  f"You won the game by {winner_score} points. ")
+        else:
+            print(f"Game is over! {winner_player} Congratulations! You won the game by {winner_score} points. ")
+
+        print(f"The players and scores: {game_scores_table}")
 
     if game_type == "In Pairs":
         print("Hello Players, you play In Pairs ")
@@ -38,8 +47,7 @@ def play_game():
 
 
 def main():
-    # play_game()
-    pass
+    play_game()
 
 
 if __name__ == '__main__':
